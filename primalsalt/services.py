@@ -44,7 +44,7 @@ class ConfigCreatorService():
         shutil.copyfile(os.path.join(cwd, 'example.primal.yml'), self.config_file)
 
 
-class BuildFromConfigService():
+class BuildProjectFromConfigService():
     def __init__(self, config_file, *args, **kwargs):
         self.config = None
         self.config_file = Path(config_file)

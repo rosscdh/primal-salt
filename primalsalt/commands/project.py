@@ -2,7 +2,7 @@ import os
 import sys
 import click
 from pathlib import Path
-from services import ConfigLoaderService, ConfigCreatorService, BuildFromConfigService
+from services import ConfigLoaderService, ConfigCreatorService, BuildProjectFromConfigService
 cwd = os.getcwd()
 
 
@@ -26,7 +26,7 @@ def init(ctx, path):
     if click.confirm('You want to start a new primal salt project at: {}'.format(directory)):
         config_create_service = ConfigCreatorService(path=directory)
         config_create_service.create()
-        build_service = BuildFromConfigService(config_file=config_create_service.config_file)
+        build_service = BuildProjectFromConfigService(config_file=config_create_service.config_file)
         build_service.build()
 
 
