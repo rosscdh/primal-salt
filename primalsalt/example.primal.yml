@@ -11,3 +11,7 @@ primal:
       - https://github.com/thiccbois/secret-profiles
   remote:
     host: 13.209.47.229
+    paths:
+      formulas: /etc/salt/formulas
+      pillars: /etc/salt/formulas
+      profiles: /etc/salt/formulas

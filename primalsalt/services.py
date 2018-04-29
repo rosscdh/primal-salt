@@ -1,5 +1,6 @@
 import os
 import yaml
+import click
 import shutil
 from dulwich import porcelain
 from pathlib import Path
@@ -80,3 +81,24 @@ class BuildProjectFromConfigService():
 
     def build_profiles(self):
         self.build_structure(key='profiles')
+
+
+class PushProjectFromConfigService():
+    def __init__(self, config_file, *args, **kwargs):
+        self.config = None
+        self.config_file = Path(config_file)
+        self.parent_directory = self.config_file.parent
+        assert self.config_file.exists(), 'There does not appear to be a file: {}'.format(self.config_file)
+        self._load()
+
+    def _load(self):
+        config_service = ConfigLoaderService(config_file=self.config_file)
+        self.config = config_service.load()
+        self.remote_host = self.config.get('primal').get('remote').get('host')
+        self.mapping = self.config.get('primal').get('remote').get('paths')
+
+    def push(self):
+        #import pdb;pdb.set_trace()
+        for item in self.mapping.keys():
+            directory = os.path.join(self.parent_directory, item)
+            click.echo('Push {} to {}'.format(directory, self.mapping.get(item)))

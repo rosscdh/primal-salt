@@ -1,6 +1,8 @@
 import click
 
 from commands.project import project
+from commands.remote import remote
+
 
 @click.group()
 @click.option('--debug/--no-debug', default=False)
@@ -10,7 +12,7 @@ def cli(ctx, debug):
 
 
 cli.add_command(project)
-#cli.add_command(remote)
+cli.add_command(remote)
 
 
 def run():
