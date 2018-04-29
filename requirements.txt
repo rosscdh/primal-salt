@@ -1,0 +1,6 @@
+bunch==1.0.1
+click==6.7
+dulwich==0.19.2
+fabric3==1.14.post1
+pyyaml==3.12
+requests==2.18.4

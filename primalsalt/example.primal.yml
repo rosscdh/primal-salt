@@ -1,0 +1,13 @@
+version: 1
+primal:
+  name: My example project
+  salt:
+    formulas:
+      - https://github.com/thiccbois/registry-formula
+      - https://github.com/thiccbois/scantrust-formula
+    pillars:
+      - https://github.com/thiccbois/scantrust-formula
+    profiles:
+      - https://github.com/thiccbois/scantrust-formula
+  remote:
+    host: 13.209.47.229
