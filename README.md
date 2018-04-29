@@ -45,3 +45,9 @@ primal:
       - from: secret-profiles/[state|orchestrate]
         to: /etc/salt/state
 ```
+
+## TODO
+
+- make globbing on fab sync work
+- webhooks?
+- tests
