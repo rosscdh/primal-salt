@@ -64,6 +64,7 @@ class BuildProjectFromConfigService():
             directory_path = os.path.join(self.parent_directory, directory)
             if not os.path.exists(directory_path):
                 os.makedirs(directory_path)
+            self.build_structure(key=directory)
 
     def build_structure(self, key):
         salt = self.config.get('primal').get('salt')
@@ -72,15 +73,6 @@ class BuildProjectFromConfigService():
         for structure in structures:
             name = os.path.basename(structure)
             porcelain.clone(structure, os.path.join(directory_path, name))
-
-    def build_formulas(self):
-        self.build_structure(key='formulas')
-
-    def build_pillars(self):
-        self.build_structure(key='pillars')
-
-    def build_profiles(self):
-        self.build_structure(key='profiles')
 
 
 class PushProjectFromConfigService():
@@ -99,6 +91,6 @@ class PushProjectFromConfigService():
 
     def push(self):
         #import pdb;pdb.set_trace()
-        for item in self.mapping.keys():
-            directory = os.path.join(self.parent_directory, item)
-            click.echo('Push {} to {}'.format(directory, self.mapping.get(item)))
+        for item in self.mapping:
+            directory = os.path.join(self.parent_directory, item.get('from'))
+            click.echo('Push {} to {}'.format(directory, item.get('to')))

@@ -6,12 +6,15 @@ primal:
       - https://github.com/thiccbois/registry-formula
       - https://github.com/thiccbois/scantrust-formula
     pillars:
-      - https://github.com/thiccbois/secret-pillar
+      - https://github.com/thiccbois/secret-pillars
     profiles:
       - https://github.com/thiccbois/secret-profiles
   remote:
     host: 13.209.47.229
     paths:
-      formulas: /etc/salt/formulas
-      pillars: /etc/salt/formulas
-      profiles: /etc/salt/formulas
+      - from: registry-formula
+        to: /etc/salt/formulas
+      - from: secret-pillars
+        to: /etc/salt/pillars
+      - from: secret-profiles
+        to: /etc/salt/state
