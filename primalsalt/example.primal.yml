@@ -6,8 +6,8 @@ primal:
       - https://github.com/thiccbois/registry-formula
       - https://github.com/thiccbois/scantrust-formula
     pillars:
-      - https://github.com/thiccbois/scantrust-formula
+      - https://github.com/thiccbois/secret-pillar
     profiles:
-      - https://github.com/thiccbois/scantrust-formula
+      - https://github.com/thiccbois/secret-profiles
   remote:
     host: 13.209.47.229

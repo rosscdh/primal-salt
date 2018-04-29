@@ -28,6 +28,9 @@ def init(ctx, path):
         config_create_service.create()
         build_service = BuildProjectFromConfigService(config_file=config_create_service.config_file)
         build_service.build()
+        build_service.build_formulas()
+        build_service.build_pillars()
+        build_service.build_profiles()
 
 
 @project.command()

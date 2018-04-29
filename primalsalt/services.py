@@ -1,6 +1,7 @@
 import os
 import yaml
 import shutil
+from dulwich import porcelain
 from pathlib import Path
 
 path = os.path.abspath(__file__)
@@ -62,3 +63,20 @@ class BuildProjectFromConfigService():
             directory_path = os.path.join(self.parent_directory, directory)
             if not os.path.exists(directory_path):
                 os.makedirs(directory_path)
+
+    def build_structure(self, key):
+        salt = self.config.get('primal').get('salt')
+        structures = salt.get(key, [])
+        directory_path = os.path.join(self.parent_directory, key)
+        for structure in structures:
+            name = os.path.basename(structure)
+            porcelain.clone(structure, os.path.join(directory_path, name))
+
+    def build_formulas(self):
+        self.build_structure(key='formulas')
+
+    def build_pillars(self):
+        self.build_structure(key='pillars')
+
+    def build_profiles(self):
+        self.build_structure(key='profiles')
